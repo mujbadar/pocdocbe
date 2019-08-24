@@ -25,6 +25,17 @@ router.post('/new', (req, res) => {
   })
 })
 
+//Get route to visit other  Visits
+router.get('/:id', (req, res) => {
+  Visit.findOne({_id: req.params.id}, (error, foundVisit) => {
+    if (error) {
+      res.status(400).json({error: error.message})
+    }else {
+      console.log(foundVisit);
+      res.status(200).json(foundVisit)
+    }
+  })
+})
 
 //Edit visit
 router.put('/:id', (req, res) => {
